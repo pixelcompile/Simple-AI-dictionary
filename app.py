@@ -11,8 +11,8 @@ lemmatizer = WordNetLemmatizer()
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-st.set_page_config(page_title="Simple AI Dictionary", page_icon="📘")
-st.title("📘 Simple AI Dictionary")
+st.set_page_config(page_title="Easy E-E Dictionary", page_icon="📘")
+st.title("📘 Easy E-E Dictionary")
 st.write("Easily understand English words — designed for beginners!")
 
 # Get lemma (base form)
