@@ -1,0 +1,7 @@
+nltk 
+textblob 
+pronouncing 
+eng-to-ipa
+inflect
+pattern
+streamlit 
