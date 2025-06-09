@@ -2,3 +2,4 @@ nltk
 textblob 
 openai
 streamlit 
+dotenv
