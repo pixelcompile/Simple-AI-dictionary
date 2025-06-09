@@ -2,7 +2,6 @@ import streamlit as st
 from openai import OpenAI
 import nltk
 from nltk.stem import WordNetLemmatizer
-import re
 from dotenv import load_dotenv
 import os
 
