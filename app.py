@@ -4,9 +4,12 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 from dotenv import load_dotenv
 import os
+import requests
 
 nltk.download('wordnet', quiet=True)
 lemmatizer = WordNetLemmatizer()
+
+UNSPLASH_ACCESS_KEY = os.getenv("UNSPLASH_ACCESS_KEY")
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -80,14 +83,30 @@ def format_output(raw, base_word):
 
     return "\n".join(result)
 
+def fetch_image(word):
+    url = f"https://api.unsplash.com/search/photos?query={word}&client_id={UNSPLASH_ACCESS_KEY}&per_page=1"
+    try:
+        response = requests.get(url)
+        data = response.json()
+        if data["results"]:
+            image_url = data["results"][0]["urls"]["small"]
+            return image_url
+    except Exception as e:
+        print("Image fetch error:", e)
+    return None
+
 # UI Input
 word = st.text_input("Enter an English word to explain:")
 
-if word.strip():  # Trigger as soon as user presses Enter with input
+if word.strip():  # Trigger when user presses Enter
     with st.spinner("🔎 Looking up..."):
         base = get_base_form(word)
         gpt_output = get_gpt_output(word)
         formatted = format_output(gpt_output, base)
+        image_url = fetch_image(base)
+
         st.markdown("---")
         st.markdown(formatted)
+        if image_url:
+            st.image(image_url, caption=f"Illustration of '{base}'", use_column_width=True)
         st.markdown("---")
