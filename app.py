@@ -33,7 +33,7 @@ def get_gpt_output(word):
         🔢 Plural: (only if noun)
         🔁 Past Simple: (only if verb)
         🔁 Past Participle: (only if verb)
-        💬 Example: "I saw a {word.lower()} in the story."
+        💬 Example:
 
         Use beginner-level English. Do not write anything outside this format.
         """
