@@ -108,5 +108,13 @@ if word.strip():  # Trigger when user presses Enter
         st.markdown("---")
         st.markdown(formatted)
         if image_url:
-            st.image(image_url, caption=f"Illustration of '{base}'", use_column_width=True)
+            st.markdown(
+                f"""
+                <div style="text-align: center;">
+                    <img src="{image_url}" alt="Image of {base}" style="max-height: 300px; border-radius: 10px;" />
+                    <p style="font-size: 0.9em; color: gray;">Illustration of "{base}"</p>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
         st.markdown("---")
