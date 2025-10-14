@@ -43,7 +43,7 @@ def get_gpt_output(word):
 
     try:
         response = client.responses.create(
-            model="gpt-4o-mini",
+            model="gpt-5-nano",
             input=[{"role": "user", "content": prompt}]
         )
         return response.output_text
